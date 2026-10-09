@@ -31,14 +31,51 @@ const campoCategoria = document.querySelector("#categoriaProducto");
 const campoPrecio = document.querySelector("#precioProducto");
 
 const botonAgregar = document.querySelector("#btnAgregarProducto");
+const listaProductos = document.querySelector("#listaProductos");
+
+function mostrarProductos() {
+    listaProductos.innerHTML = "";
+
+    productos.forEach(function (producto) {
+        const elemento = document.createElement("li");
+
+        elemento.textContent =
+            `${producto.nombre} - ${producto.categoria} - $${producto.precio.toLocaleString("es-CO")}`;
+
+        listaProductos.appendChild(elemento);
+    });
+}
 
 botonAgregar.addEventListener("click", function () {
-    console.log("Botón presionado");
-    const nombre = campoNombre.value;
-    const categoria = campoCategoria.value;
-    const precio = campoPrecio.value;
+    const nombre = campoNombre.value.trim();
+    const categoria = campoCategoria.value.trim();
+    const precio = Number(campoPrecio.value);
 
-    console.log(nombre);
-    console.log(categoria);
-    console.log(precio);
+    if (nombre === "" || categoria === "" || campoPrecio.value === "") {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    if (!Number.isFinite(precio) || precio < 0) {
+        alert("Ingresa un precio válido, igual o mayor que cero.");
+        return;
+    }
+
+    const nuevoProducto = {
+        nombre: nombre,
+        categoria: categoria,
+        precio: precio
+    };
+
+    productos.push(nuevoProducto);
+
+    mostrarProductos();
+
+    campoNombre.value = "";
+    campoCategoria.value = "";
+    campoPrecio.value = "";
+
+    campoNombre.focus();
 });
+
+mostrarProductos();
