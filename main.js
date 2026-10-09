@@ -34,4 +34,11 @@ const botonAgregar = document.querySelector("#btnAgregarProducto");
 
 botonAgregar.addEventListener("click", function () {
     console.log("Botón presionado");
+    const nombre = campoNombre.value;
+    const categoria = campoCategoria.value;
+    const precio = campoPrecio.value;
+
+    console.log(nombre);
+    console.log(categoria);
+    console.log(precio);
 });
