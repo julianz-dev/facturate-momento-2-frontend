@@ -45,18 +45,24 @@ const botonMostrarTodos = document.querySelector("#btnMostrarTodos");
 
 // Selector de la lista de productos
 const listaProductos = document.querySelector("#listaProductos");
+const contadorProductos = document.querySelector("#contadorProductos");
 
 //==========================================================//
 //========Función para mostrar la lista de productos========//
 //==========================================================//
 const mostrarProductos = (lista) => {
     listaProductos.innerHTML = "";
+
+    contadorProductos.textContent =
+        `Mostrando ${lista.length} de ${productos.length} productos`;
+
     if (lista.length === 0) {
         const elemento = document.createElement("li");
         elemento.textContent = "No se encontraron productos que coincidan con la búsqueda.";
         listaProductos.appendChild(elemento);
         return;
     }
+
     lista.forEach((producto) => {
         const elemento = document.createElement("li");
         elemento.textContent =

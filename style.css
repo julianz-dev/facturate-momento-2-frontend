@@ -159,3 +159,10 @@ button:focus-visible {
     margin-bottom: 10px;
     overflow-wrap: anywhere;
 }
+
+#contadorProductos {
+    margin: 0 0 15px;
+    color: var(--gris-medio);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
