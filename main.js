@@ -53,15 +53,22 @@ const listaProductos = document.querySelector("#listaProductos");
 //==========================================================//
 
 const mostrarProductos = (lista) => {
+  //innerHTML: Permite leer o modificar el contenido HTML interno de un elemento.
   listaProductos.innerHTML = "";
 
   lista.forEach((producto) => {
     // Crear un nuevo elemento HTML <li> en memoria.
     // Todavía no aparece en la página porque aún no se ha agregado al DOM.
+    //document.createElement() Crea un elemento HTML nuevo.
     const elemento = document.createElement("li");
 
+    // Asignar el texto que se mostrará dentro del elemento <li>.
+    // ${...} permite insertar valores dentro de una plantilla literal.
+    // toLocaleString("es-CO") da formato al número según la configuración regional colombiana.
     elemento.textContent = `${producto.nombre} - ${producto.categoria} - $${producto.precio.toLocaleString("es-CO")}`;
 
+    // Insertar el elemento <li> dentro de la lista HTML.
+    // appendChild() agrega el elemento como hijo de listaProductos.
     listaProductos.appendChild(elemento); //agregar elementos
   });
 };
@@ -131,12 +138,14 @@ botonAgregar.addEventListener("click", () => {
   };
 
   // Agregar el producto al arreglo
+  // Agregar el objeto nuevo al arreglo de productos.
+  // push() incorpora un elemento al final del arreglo.
   productos.push(nuevoProducto);
 
   // Actualizar la lista en pantalla
   mostrarProductos(productos);
 
-  // Limpiar los campos del formulario
+  // Limpiar los campos del formulario después del registro.
   campoNombre.value = "";
   campoCategoria.value = "";
   campoPrecio.value = "";
