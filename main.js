@@ -51,9 +51,16 @@ const listaProductos = document.querySelector("#listaProductos");
 //==========================================================//
 const mostrarProductos = (lista) => {
     listaProductos.innerHTML = "";
+    if (lista.length === 0) {
+        const elemento = document.createElement("li");
+        elemento.textContent = "No se encontraron productos que coincidan con la búsqueda.";
+        listaProductos.appendChild(elemento);
+        return;
+    }
     lista.forEach((producto) => {
         const elemento = document.createElement("li");
-        elemento.textContent = `${producto.nombre} - ${producto.categoria} - $${producto.precio.toLocaleString("es-CO")}`;
+        elemento.textContent =
+            `${producto.nombre} - ${producto.categoria} - $${producto.precio.toLocaleString("es-CO")}`;
         listaProductos.appendChild(elemento);
     });
 };
@@ -64,7 +71,7 @@ const mostrarProductos = (lista) => {
 campoBuscar.addEventListener("input", () => {
     const textoBuscar = campoBuscar.value.trim().toLowerCase();
     if (textoBuscar === "") {
-        alert("Por favor, escribe un nombre o una categoría para buscar.");
+        mostrarProductos(productos);
         return;
     }
     const resultados = productos.filter((producto) => {
@@ -73,11 +80,7 @@ campoBuscar.addEventListener("input", () => {
             producto.categoria.toLowerCase().includes(textoBuscar)
         );
     });
-    if (resultados.length === 0) {
-        alert("No se encontraron productos que coincidan con la búsqueda.");
-    }
     mostrarProductos(resultados);
-    console.log(resultados);
 });
 
 //==========================================================//
