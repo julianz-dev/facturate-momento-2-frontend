@@ -66,10 +66,11 @@ const mostrarProductos = (lista) => {
 };
 
 //==========================================================//
-//==========Botón para accionar "Buscar producto"===========//
+//=============Función para buscar productos================//
 //==========================================================//
-campoBuscar.addEventListener("input", () => {
+const filtrarProductos = () => {
     const textoBuscar = campoBuscar.value.trim().toLowerCase();
+
     if (textoBuscar === "") {
         mostrarProductos(productos);
         return;
@@ -81,7 +82,10 @@ campoBuscar.addEventListener("input", () => {
         );
     });
     mostrarProductos(resultados);
-});
+};
+// Eventos para ejecutar la búsqueda
+campoBuscar.addEventListener("input", filtrarProductos);
+botonBuscar.addEventListener("click", filtrarProductos);
 
 //==========================================================//
 //======Botón para mostrar todos los productos==============//
