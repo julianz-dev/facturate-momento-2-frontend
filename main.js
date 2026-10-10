@@ -55,13 +55,17 @@ const mensajeFormulario = document.querySelector("#mensajeFormulario");
 //==========================================================//
 const mostrarMensajeFormulario = (mensaje, tipo) => {
     mensajeFormulario.textContent = mensaje;
-    mensajeFormulario.className = tipo;
+    mensajeFormulario.className = `mensaje-formulario ${tipo}`;
 };
 
 const limpiarMensajeFormulario = () => {
     mensajeFormulario.textContent = "";
-    mensajeFormulario.className = "";
+    mensajeFormulario.className = "mensaje-formulario";
 };
+
+[campoNombre, campoCategoria, campoPrecio].forEach((campo) => {
+    campo.addEventListener("input", limpiarMensajeFormulario);
+});
 
 //==========================================================//
 //========Función para mostrar la lista de productos========//
