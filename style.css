@@ -166,3 +166,19 @@ button:focus-visible {
     font-size: 0.9rem;
     font-weight: bold;
 }
+
+/* Mensajes del formulario */
+.mensaje-formulario {
+    min-height: 1.5em;
+    margin: 10px 0 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.mensaje-formulario.error {
+    color: #b91c1c;
+}
+
+.mensaje-formulario.exito {
+    color: var(--verde);
+}

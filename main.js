@@ -30,12 +30,12 @@ const productos = [
     },
 ];
 
-// Selectores de los campos del formulario
+// Selectores del formulario de registro
 const campoNombre = document.querySelector("#nombreProducto");
 const campoCategoria = document.querySelector("#categoriaProducto");
 const campoPrecio = document.querySelector("#precioProducto");
 
-// Selectores de los elementos de búsqueda
+// Selectores de búsqueda
 const campoBuscar = document.querySelector("#buscarProducto");
 const botonBuscar = document.querySelector("#btnBuscarProducto");
 
@@ -43,9 +43,25 @@ const botonBuscar = document.querySelector("#btnBuscarProducto");
 const botonAgregar = document.querySelector("#btnAgregarProducto");
 const botonMostrarTodos = document.querySelector("#btnMostrarTodos");
 
-// Selector de la lista de productos
+// Selectores de la lista de productos y su contador
 const listaProductos = document.querySelector("#listaProductos");
 const contadorProductos = document.querySelector("#contadorProductos");
+
+// Selector de mensajes del formulario
+const mensajeFormulario = document.querySelector("#mensajeFormulario");
+
+//==========================================================//
+//======Funciones para mensajes del formulario==============//
+//==========================================================//
+const mostrarMensajeFormulario = (mensaje, tipo) => {
+    mensajeFormulario.textContent = mensaje;
+    mensajeFormulario.className = tipo;
+};
+
+const limpiarMensajeFormulario = () => {
+    mensajeFormulario.textContent = "";
+    mensajeFormulario.className = "";
+};
 
 //==========================================================//
 //========Función para mostrar la lista de productos========//
@@ -107,21 +123,27 @@ botonAgregar.addEventListener("click", () => {
     const nombre = campoNombre.value.trim();
     const categoria = campoCategoria.value.trim();
     const precio = Number(campoPrecio.value);
+
     if (nombre === "" || categoria === "" || campoPrecio.value === "") {
-        alert("Por favor, completa todos los campos.");
+        mostrarMensajeFormulario("Por favor, completa todos los campos.", "error");
         return;
     }
+
     if (!Number.isFinite(precio) || precio <= 0) {
-        alert("Ingresa un precio válido, mayor que cero.");
+        mostrarMensajeFormulario("Ingresa un precio válido, mayor que cero.", "error");
         return;
     }
+
     const nuevoProducto = {
         nombre: nombre,
         categoria: categoria,
         precio: precio,
-    }
+    };
+
     productos.push(nuevoProducto);
     mostrarProductos(productos);
+    mostrarMensajeFormulario("Producto agregado correctamente.", "exito");
+
     campoNombre.value = "";
     campoCategoria.value = "";
     campoPrecio.value = "";
