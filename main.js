@@ -1,3 +1,4 @@
+
 const productos = [
     {
         nombre: "Mouse inalámbrico",
@@ -26,17 +27,35 @@ const productos = [
     }
 ];
 
+//==========================================================//
+//=============Facturate — Gestión de Productos=============//
+//==========================================================//
+
+// Selectores de los campos del formulario
 const campoNombre = document.querySelector("#nombreProducto");
 const campoCategoria = document.querySelector("#categoriaProducto");
 const campoPrecio = document.querySelector("#precioProducto");
 
+// Selectores de los elementos de búsqueda
+const campoBuscar = document.querySelector("#buscarProducto");
+const botonBuscar = document.querySelector("#btnBuscarProducto");
+
+// Selectores de los botones de gestión
 const botonAgregar = document.querySelector("#btnAgregarProducto");
+const botonMostrarTodos = document.querySelector("#btnMostrarTodos");
+
+// Selector de la lista de productos
 const listaProductos = document.querySelector("#listaProductos");
 
-function mostrarProductos() {
+
+//==========================================================//
+//========Función para mostrar la lista de productos========//
+//==========================================================//
+
+const mostrarProductos = (lista) => {
     listaProductos.innerHTML = "";
 
-    productos.forEach(function (producto) {
+    lista.forEach((producto) => {
         const elemento = document.createElement("li");
 
         elemento.textContent =
@@ -44,38 +63,99 @@ function mostrarProductos() {
 
         listaProductos.appendChild(elemento);
     });
-}
+};
 
-botonAgregar.addEventListener("click", function () {
+
+//==========================================================//
+//==========Botón para accionar "Buscar producto"===========//
+//==========================================================//
+
+botonBuscar.addEventListener("click", () => {
+
+    const textoBuscar = campoBuscar.value.trim().toLowerCase();
+
+    if (textoBuscar === "") {
+        alert("Por favor, escribe un nombre o una categoría para buscar.");
+        return;
+    }
+
+    const resultados = productos.filter((producto) => {
+        return (
+            producto.nombre.toLowerCase().includes(textoBuscar) ||
+            producto.categoria.toLowerCase().includes(textoBuscar)
+        );
+    });
+
+    if (resultados.length === 0) {
+        alert("No se encontraron productos que coincidan con la búsqueda.");
+    }
+
+    mostrarProductos(resultados);
+
+    console.log(resultados);
+});
+
+
+//==========================================================//
+//======Botón para mostrar todos los productos==============//
+//==========================================================//
+
+botonMostrarTodos.addEventListener("click", () => {
+    mostrarProductos(productos);
+});
+
+
+//==========================================================//
+//=========Botón para accionar "Agregar producto"===========//
+//==========================================================//
+
+botonAgregar.addEventListener("click", () => {
+
     const nombre = campoNombre.value.trim();
     const categoria = campoCategoria.value.trim();
     const precio = Number(campoPrecio.value);
 
-    if (nombre === "" || categoria === "" || campoPrecio.value === "") {
+    // Validar que todos los campos estén completos
+    if (
+        nombre === "" ||
+        categoria === "" ||
+        campoPrecio.value === ""
+    ) {
         alert("Por favor, completa todos los campos.");
         return;
     }
 
-    if (!Number.isFinite(precio) || precio < 0) {
-        alert("Ingresa un precio válido, igual o mayor que cero.");
+    // Validar que el precio sea un número válido y positivo
+    if (!Number.isFinite(precio) || precio <= 0) {
+        alert("Ingresa un precio válido, mayor que cero.");
         return;
     }
 
+    // Crear el objeto del nuevo producto
     const nuevoProducto = {
         nombre: nombre,
         categoria: categoria,
         precio: precio
     };
 
+    // Agregar el producto al arreglo
     productos.push(nuevoProducto);
 
-    mostrarProductos();
+    // Actualizar la lista en pantalla
+    mostrarProductos(productos);
 
+    // Limpiar los campos del formulario
     campoNombre.value = "";
     campoCategoria.value = "";
     campoPrecio.value = "";
 
+    // Devolver el foco al campo del nombre
     campoNombre.focus();
 });
 
-mostrarProductos();
+
+//==========================================================//
+//===========Mostrar productos al cargar la página==========//
+//==========================================================//
+
+mostrarProductos(productos);

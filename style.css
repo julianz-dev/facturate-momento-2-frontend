@@ -1,6 +1,7 @@
-/*========================================
-=             PALETA DE COLORES          =
-========================================*/
+/*==========================================================
+=                 PALETA DE COLORES                       =
+==========================================================*/
+
 :root {
     --azul-oscuro: #0b1f3a;
     --azul-claro: #5bc0eb;
@@ -10,4 +11,151 @@
     --gris-claro: #dfe5ec;
     --gris-fondo: #f4f8fb;
     --blanco: #ffffff;
+}
+
+/*==========================================================
+=                    ESTILOS GENERALES                    =
+==========================================================*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--gris-oscuro);
+    line-height: 1.6;
+}
+
+/*==========================================================
+=                       ENCABEZADO                         =
+==========================================================*/
+
+header {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 25px 15px;
+    border-bottom: 5px solid var(--azul-claro);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin: 5px 0 0;
+    color: var(--azul-claro);
+}
+
+/*==========================================================
+=                     CONTENIDO PRINCIPAL                 =
+==========================================================*/
+
+main {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+/*==========================================================
+=                        SECCIONES                         =
+==========================================================*/
+
+section {
+    background-color: var(--blanco);
+    margin-bottom: 25px;
+    padding: 25px;
+    border: 1px solid var(--gris-claro);
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(11, 31, 58, 0.08);
+}
+
+section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--azul-oscuro);
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--azul-claro);
+    padding-bottom: 8px;
+}
+
+/*==========================================================
+=                 CAMPOS DEL FORMULARIO                    =
+==========================================================*/
+
+label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--gris-oscuro);
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin-bottom: 15px;
+    border: 1px solid var(--gris-claro);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    background-color: var(--blanco);
+}
+
+input:focus {
+    outline: 2px solid var(--azul-claro);
+    border-color: var(--azul-claro);
+}
+
+/*==========================================================
+=                         BOTONES                          =
+==========================================================*/
+
+button {
+    padding: 11px 16px;
+    margin: 5px 5px 5px 0;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--azul-claro);
+    color: var(--azul-oscuro);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 3px;
+}
+
+/*==========================================================
+=                   LISTA DE PRODUCTOS                     =
+==========================================================*/
+
+#listaProductos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#listaProductos li {
+    background-color: var(--gris-fondo);
+    border: 1px solid var(--gris-claro);
+    border-left: 5px solid var(--verde);
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
 }

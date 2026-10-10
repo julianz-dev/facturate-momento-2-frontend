@@ -16,36 +16,43 @@
     </header>
 
     <main>
+
         <section>
             <h2>Registrar producto</h2>
 
             <label for="nombreProducto">Nombre del producto</label>
-            <input
-                type="text"
-                id="nombreProducto"
-                placeholder="Ej. Mouse inalámbrico"
-            >
+            <input type="text" id="nombreProducto" placeholder="Ej. Mouse inalámbrico">
 
             <label for="categoriaProducto">Categoría</label>
-            <input
-                type="text"
-                id="categoriaProducto"
-                placeholder="Ej. Periféricos"
-            >
+            <input type="text" id="categoriaProducto" placeholder="Ej. Periféricos">
 
             <label for="precioProducto">Precio</label>
-            <input
-                type="number"
-                id="precioProducto"
-                placeholder="Ej. 50000"
-            >
+            <input type="number" id="precioProducto" placeholder="Ej. 50000.50" min="0.01" step="any">
+            <!-- El precio mínimo permitido es 0.01 y admite valores decimales. -->
 
+            <!-- Este botón permite registrar un nuevo producto mediante JavaScript. -->
             <button type="button" id="btnAgregarProducto">
                 Agregar producto
             </button>
         </section>
 
         <section>
+            <h2>Buscar productos</h2>
+
+            <label for="buscarProducto">Nombre o categoría</label>
+            <input type="text" id="buscarProducto" placeholder="Ej. Mouse o Periféricos">
+
+            <button type="button" id="btnBuscarProducto">
+                Buscar
+            </button>
+
+            <button type="button" id="btnMostrarTodos">
+                Mostrar todos los productos
+            </button>
+        </section>
+
+        <section>
+            <!-- En esta lista, JavaScript mostrará los productos registrados. -->
             <h2>Productos registrados</h2>
             <ul id="listaProductos"></ul>
         </section>
